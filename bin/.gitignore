@@ -2,3 +2,7 @@
 /Server.class
 /MyClient.class
 /MyServer.class
+/MultithreadServer.class
+/MultithreadClient.class
+/MultithreadServer$ClientHandler.class
+/ClientHandler.class

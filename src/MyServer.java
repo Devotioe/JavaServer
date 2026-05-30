@@ -28,7 +28,6 @@ public class MyServer {
 			
 			System.out.println("Client sent: " + clientInput);
 			
-			
 			PrintWriter msgSender = new PrintWriter(clientSocket.getOutputStream(), true); //
 			msgSender.println(clientInput);
 			System.out.println("Echoing back to the client...");
