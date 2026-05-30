@@ -18,17 +18,27 @@ public class MultithreadServer {
 		public void run() {
 			try {
 				
-				//GET CLIENT INPUT
-				BufferedReader clientReader = new BufferedReader(new InputStreamReader(socket.getInputStream())); //buffer reader to get 
-				String clientInput = clientReader.readLine(); //blocking method ; wait for buffer to have content to read
-				System.out.println("Client sent: " + clientInput);
-				//GET CLIENT INPUT
-				
-				//ECHO
-				PrintWriter msgSender = new PrintWriter(socket.getOutputStream(), true); //
-				msgSender.println(clientInput);
-				System.out.println("Echoing back to the client...");
-				//ECHO
+				while(true) {
+					//GET CLIENT INPUT
+					BufferedReader clientReader = new BufferedReader(new InputStreamReader(socket.getInputStream())); //buffer reader to get 
+					String clientInput = clientReader.readLine(); //blocking method ; wait for buffer to have content to read
+					//GET CLIENT INPUT
+					
+					
+					
+					if (clientInput.equalsIgnoreCase("exit")) {
+						System.out.println("Closing Server...");
+						socket.close();
+						break;
+					}
+					
+					System.out.println("Client sent: " + clientInput);
+					//ECHO
+					PrintWriter msgSender = new PrintWriter(socket.getOutputStream(), true); //
+					msgSender.println(clientInput);
+					System.out.println("Echoing back to the client...");
+					//ECHO
+				}
 				
 			}catch(IOException e) {
 				System.out.println("IO Exception: " + e.getMessage());
@@ -53,13 +63,14 @@ public class MultithreadServer {
 			
 			while(true) {
 				clientSocket = serverSocket.accept(); //blocking method ; waiting for client to connect
-				
+				System.out.println("A client connected to server, IP: " + clientSocket.getInetAddress());
+
 				
 				ClientHandler clientHandler = new ClientHandler(clientSocket);
 				Thread clientThread = new Thread(clientHandler);
 				clientThread.start();
 				
-				System.out.println("A client connected to server, IP: " + clientSocket.getInetAddress());
+				
 			}
 			
 		}catch(Exception e){
