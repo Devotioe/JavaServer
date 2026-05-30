@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MultithreadClient {
 	
-	
+	private static final String REMOTEHOST = "100.105.60.99";
 	private static final String HOST = "127.0.0.1";
 	private static final int PORT = 9527;
 	
@@ -23,7 +23,7 @@ public class MultithreadClient {
 		
 		try {
 			
-			socket = new Socket(HOST, PORT);
+			socket = new Socket(REMOTEHOST, PORT);
 
 			
 			while (!userInput.equalsIgnoreCase("exit")) {
