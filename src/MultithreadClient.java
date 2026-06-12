@@ -23,7 +23,7 @@ public class MultithreadClient {
 		
 		try {
 			
-			socket = new Socket(REMOTEHOST, PORT);
+			socket = new Socket(HOST, PORT);
 
 			
 			while (!userInput.equalsIgnoreCase("exit")) {
